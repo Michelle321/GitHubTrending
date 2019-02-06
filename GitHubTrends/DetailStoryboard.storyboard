@@ -13,7 +13,6 @@
         <!--DetailViewController-->
         <scene sceneID="9ii-KD-mzw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oYH-xM-0A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="zPH-0X-Wbk" userLabel="DetailViewController" customClass="DetailViewController" customModule="GitHubTrends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dhH-lQ-MfQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -101,6 +100,10 @@
                                                     <wkPreferences key="preferences"/>
                                                 </wkWebViewConfiguration>
                                             </wkWebView>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="H3r-of-wld">
+                                                <rect key="frame" x="169" y="433" width="37" height="37"/>
+                                                <color key="color" red="1" green="0.49512525889999998" blue="0.155273252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -112,9 +115,11 @@
                                             <constraint firstItem="Ewj-nm-Kgy" firstAttribute="centerX" secondItem="8rz-0D-lcW" secondAttribute="centerX" id="KQq-8z-yn4"/>
                                             <constraint firstItem="aU0-V9-dtP" firstAttribute="top" secondItem="Ewj-nm-Kgy" secondAttribute="bottom" constant="45" id="OHP-fm-AOE"/>
                                             <constraint firstItem="6Zf-7V-cdb" firstAttribute="top" secondItem="mE1-bm-t0s" secondAttribute="bottom" constant="25" id="Sds-69-JxM"/>
+                                            <constraint firstItem="H3r-of-wld" firstAttribute="top" secondItem="aU0-V9-dtP" secondAttribute="bottom" constant="139.5" id="UA3-L6-OSS"/>
                                             <constraint firstItem="6Zf-7V-cdb" firstAttribute="centerX" secondItem="8rz-0D-lcW" secondAttribute="centerX" id="e90-gk-3VY"/>
                                             <constraint firstAttribute="trailing" secondItem="aU0-V9-dtP" secondAttribute="trailing" constant="60" id="eGn-Wn-4a3"/>
                                             <constraint firstItem="mE1-bm-t0s" firstAttribute="top" secondItem="8rz-0D-lcW" secondAttribute="top" constant="25" id="nbU-AH-D2Z"/>
+                                            <constraint firstItem="H3r-of-wld" firstAttribute="centerX" secondItem="8rz-0D-lcW" secondAttribute="centerX" id="typ-ze-6K1"/>
                                             <constraint firstItem="mE1-bm-t0s" firstAttribute="centerX" secondItem="8rz-0D-lcW" secondAttribute="centerX" id="uy9-qg-kZq"/>
                                             <constraint firstAttribute="bottom" secondItem="twA-V8-VE6" secondAttribute="bottom" id="vGj-Nj-gHb"/>
                                         </constraints>
@@ -140,6 +145,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="wBq-aO-MMF"/>
                     <connections>
+                        <outlet property="activity" destination="H3r-of-wld" id="43o-JE-wkU"/>
                         <outlet property="descriptionLabel" destination="Ewj-nm-Kgy" id="39e-DU-emR"/>
                         <outlet property="forkLabel" destination="QNv-4h-KJf" id="lDo-pa-JfF"/>
                         <outlet property="imageView" destination="mE1-bm-t0s" id="Pnc-7K-zKy"/>
@@ -149,6 +155,7 @@
                         <outlet property="webViewHeight" destination="KIR-11-fQq" id="5QT-du-loq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oYH-xM-0A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-202.40000000000001" y="-126.38680659670166"/>
         </scene>

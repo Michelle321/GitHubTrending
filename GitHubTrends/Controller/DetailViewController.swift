@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var webViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
 
     var webViewIsObserving = false
 
@@ -85,7 +86,12 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        activity.stopAnimating()
+    }
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        activity.stopAnimating()
         updateContentViewHeight(webView.scrollView.contentSize.height)
         if (!webViewIsObserving) {
             addWebViewObserver()
