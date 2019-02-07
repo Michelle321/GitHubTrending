@@ -81,7 +81,9 @@ class DetailViewController: UIViewController {
     }
 
     deinit {
-        removeWebViewObserver()
+        if webViewIsObserving {
+            removeWebViewObserver()
+        }
     }
 }
 

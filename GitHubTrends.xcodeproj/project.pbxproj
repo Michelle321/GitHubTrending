@@ -29,6 +29,13 @@
 		32E05B07220B4D16009968E5 /* DetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E05B06220B4D16009968E5 /* DetailStoryboard.storyboard */; };
 		32E05B09220B4DA9009968E5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B08220B4DA9009968E5 /* DetailViewController.swift */; };
 		32E05B0B220B5B48009968E5 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B0A220B5B48009968E5 /* ViewExtension.swift */; };
+		32E05B12220C6A06009968E5 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B10220C6A06009968E5 /* ErrorTableViewCell.swift */; };
+		32E05B13220C6A06009968E5 /* ErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E05B11220C6A06009968E5 /* ErrorTableViewCell.xib */; };
+		32E05B16220C6A4C009968E5 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B14220C6A4C009968E5 /* LoadingTableViewCell.swift */; };
+		32E05B17220C6A4C009968E5 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E05B15220C6A4C009968E5 /* LoadingTableViewCell.xib */; };
+		32E05B19220C6BDA009968E5 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B18220C6BDA009968E5 /* CellViewModel.swift */; };
+		32E05B1D220C71C2009968E5 /* ConfigurableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B1C220C71C2009968E5 /* ConfigurableTableViewCell.swift */; };
+		32E05B1F220C7A3F009968E5 /* ErrorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E05B1E220C7A3F009968E5 /* ErrorCellViewModel.swift */; };
 		533BAE80BDAF89118CEF810E /* Pods_GitHubTrends.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98BFC7A03B194E29F09D068 /* Pods_GitHubTrends.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +77,13 @@
 		32E05B06220B4D16009968E5 /* DetailStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStoryboard.storyboard; sourceTree = "<group>"; };
 		32E05B08220B4DA9009968E5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		32E05B0A220B5B48009968E5 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		32E05B10220C6A06009968E5 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
+		32E05B11220C6A06009968E5 /* ErrorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorTableViewCell.xib; sourceTree = "<group>"; };
+		32E05B14220C6A4C009968E5 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		32E05B15220C6A4C009968E5 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
+		32E05B18220C6BDA009968E5 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		32E05B1C220C71C2009968E5 /* ConfigurableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableTableViewCell.swift; sourceTree = "<group>"; };
+		32E05B1E220C7A3F009968E5 /* ErrorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCellViewModel.swift; sourceTree = "<group>"; };
 		A6B0E4EDFB5CD995B1AFB3F6 /* Pods-GitHubTrends.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubTrends.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubTrends/Pods-GitHubTrends.release.xcconfig"; sourceTree = "<group>"; };
 		E98BFC7A03B194E29F09D068 /* Pods_GitHubTrends.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubTrends.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -148,7 +162,6 @@
 			children = (
 				321F59202208BE3C0053E450 /* ProjectDTO.swift */,
 				321F59222208BF4F0053E450 /* User.swift */,
-				321F59242208C21A0053E450 /* Project.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,7 +169,10 @@
 		321F59272208C3610053E450 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				321F59242208C21A0053E450 /* Project.swift */,
 				321F593A2208E2EB0053E450 /* GTMainViewModel.swift */,
+				32E05B18220C6BDA009968E5 /* CellViewModel.swift */,
+				32E05B1E220C7A3F009968E5 /* ErrorCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -185,8 +201,13 @@
 		321F593E220AA4770053E450 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				321F5943220B14280053E450 /* ProjectsListTableViewCell.swift */,
 				32E05B0A220B5B48009968E5 /* ViewExtension.swift */,
+				32E05B10220C6A06009968E5 /* ErrorTableViewCell.swift */,
+				32E05B11220C6A06009968E5 /* ErrorTableViewCell.xib */,
+				32E05B14220C6A4C009968E5 /* LoadingTableViewCell.swift */,
+				32E05B15220C6A4C009968E5 /* LoadingTableViewCell.xib */,
+				321F5943220B14280053E450 /* ProjectsListTableViewCell.swift */,
+				32E05B1C220C71C2009968E5 /* ConfigurableTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +313,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E05B17220C6A4C009968E5 /* LoadingTableViewCell.xib in Resources */,
+				32E05B13220C6A06009968E5 /* ErrorTableViewCell.xib in Resources */,
 				32E05B07220B4D16009968E5 /* DetailStoryboard.storyboard in Resources */,
 				321F59072208B9360053E450 /* LaunchScreen.storyboard in Resources */,
 				321F59042208B9360053E450 /* Assets.xcassets in Resources */,
@@ -369,18 +392,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				321F593B2208E2EB0053E450 /* GTMainViewModel.swift in Sources */,
+				32E05B16220C6A4C009968E5 /* LoadingTableViewCell.swift in Sources */,
 				321F592C2208C7350053E450 /* GSTErrors.swift in Sources */,
 				321F592E2208C81D0053E450 /* GTSConstant.swift in Sources */,
+				32E05B19220C6BDA009968E5 /* CellViewModel.swift in Sources */,
 				321F59232208BF4F0053E450 /* User.swift in Sources */,
 				321F58FD2208B9330053E450 /* AppDelegate.swift in Sources */,
 				321F591D2208BB1A0053E450 /* MainViewController.swift in Sources */,
+				32E05B1F220C7A3F009968E5 /* ErrorCellViewModel.swift in Sources */,
 				321F59322208D4360053E450 /* Result.swift in Sources */,
+				32E05B12220C6A06009968E5 /* ErrorTableViewCell.swift in Sources */,
 				321F59212208BE3C0053E450 /* ProjectDTO.swift in Sources */,
 				32E05B09220B4DA9009968E5 /* DetailViewController.swift in Sources */,
 				321F59252208C21A0053E450 /* Project.swift in Sources */,
 				32E05B0B220B5B48009968E5 /* ViewExtension.swift in Sources */,
 				321F5944220B14280053E450 /* ProjectsListTableViewCell.swift in Sources */,
 				321F59382208E1CF0053E450 /* GTSRequest.swift in Sources */,
+				32E05B1D220C71C2009968E5 /* ConfigurableTableViewCell.swift in Sources */,
 				321F592A2208C59B0053E450 /* GTService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,7 +576,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GitHubTrends/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.powerkm.GitHubTrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -563,7 +594,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GitHubTrends/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.powerkm.GitHubTrends;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -578,7 +612,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GitHubTrendsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.powerkm.GitHubTrendsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -594,7 +632,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GitHubTrendsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.powerkm.GitHubTrendsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

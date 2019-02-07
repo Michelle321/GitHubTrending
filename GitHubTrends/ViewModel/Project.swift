@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Project {
+struct Project: RowCellViewModelValue {
     let name: String
     let description: String
     let starsCount: Int

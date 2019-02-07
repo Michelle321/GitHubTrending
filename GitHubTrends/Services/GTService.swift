@@ -11,7 +11,7 @@ import Foundation
 struct GTService: GTSRequest {
     
     func makeRequest(from query:(String, String)) throws -> URLRequest {
-        guard query.0.count > 0, query.1.count > 0 else {
+        guard query.1.count > 0 else {
             throw RequestError.invalidQuery
         }
 

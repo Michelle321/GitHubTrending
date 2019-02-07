@@ -6,16 +6,19 @@
 //  Copyright © 2019 Michelle. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GTMainViewModel {
 
     private var currentRequestQuery: (String,String)?
+    private var projectsModel: [Project] = []
+    private var completionBlock: () -> Void
+    private var isLoading = false
+    private var errorMessage: String?
 
-    private var viewModels: [Project] = []
-    private var completionBlock: (Bool, Error?) -> Void
+    private let defaultErrorMessage = "Sorry, we are not able to get the trending result now"
 
-    init(with completionBlock: @escaping (Bool, Error?) -> Void) {
+    init(with completionBlock: @escaping () -> Void) {
         self.completionBlock = completionBlock
     }
 
@@ -24,25 +27,45 @@ class GTMainViewModel {
         return self.shouldProcessResponse(response)
     })
 
-    var viewModelsCount: Int {
-        return viewModels.count
+    func canPerformSegue() -> Bool {
+        guard isLoading == false,
+            projectsModel.count > 0 else { return false }
+        return true
     }
 
-    func viewModel(at index: Int) -> Project? {
-        guard index >= 0 && index < viewModelsCount else { return nil }
-        return viewModels[index]
+    var viewModelsCount: Int {
+        guard isLoading == false else { return 1 }
+        return projectsModel.count > 0 ? projectsModel.count : 1
+    }
+
+    func viewModel(at index: Int) -> CellViewModel {
+        guard isLoading == false else {
+            return CellViewModel(cellType: .loading, cellValue: nil)
+        }
+
+        guard index >= 0 && index < projectsModel.count else {
+            let errorModel = ErrorCellViewModel(textColor: UIColor.black, errorMessage: errorMessage ?? defaultErrorMessage)
+            return CellViewModel(cellType: .error, cellValue: errorModel)
+        }
+
+        return CellViewModel(cellType: .projects, cellValue: projectsModel[index])
     }
 
     func fetchTrendingResult(for query: String, with trending: String = TrendingSince.daily.rawValue) {
+        isLoading = true
+        completionBlock()
         currentRequestQuery = (query, trending)
         loader.loadAPTRequest(requestData: (query, trending)) { [weak self] (projectsListResult) in
             guard let self = self else { return }
+            self.isLoading = false
             switch projectsListResult {
                 case .success(let projects):
-                    self.viewModels = projects.map{ Project.init($0) }
-                    self.completionBlock(true, nil)
+                    self.projectsModel = projects.map{ Project.init($0) }
+                    self.completionBlock()
                 case .failure(let error):
-                    self.completionBlock(false, error)
+                    self.errorMessage = error.localizedDescription
+                    self.projectsModel = []
+                    self.completionBlock()
             }
         }
     }

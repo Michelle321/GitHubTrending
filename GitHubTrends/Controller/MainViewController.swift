@@ -19,17 +19,15 @@ class MainViewController: UITableViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var viewModel: GTMainViewModel?
 
-    private var currentSearchTerm = "swift"
+    private var currentSearchTerm = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = GTMainViewModel(with: { [weak self] (success, error) in
-            if success {
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }else {
-                print(error.debugDescription)
+        tableView.register(cellTypes: [.loading, .error])
+
+        viewModel = GTMainViewModel(with: { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
             }
         })
 
@@ -39,7 +37,7 @@ class MainViewController: UITableViewController {
                                                         TrendingSince.weekly.rawValue,
                                                         TrendingSince.monthly.rawValue]
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "search language"
+        searchController.searchBar.placeholder = "search trending language"
 
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
@@ -64,21 +62,31 @@ class MainViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let project = viewModel?.viewModel(at: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ProjectsListTableViewCell.self),
-                                                 for:indexPath) as? ProjectsListTableViewCell
-                  else { return UITableViewCell() }
+        guard let cellViewModel = viewModel?.viewModel(at: indexPath.row) else { return UITableViewCell() }
 
-            cell.configure(project)
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellViewModel.cellType.rawValue, for:indexPath)
+
+        if let cell = cell as? ConfigurableTableViewCell {
+            cell.configure(cellViewModel)
+        }
+
+        return cell
     }
 
     // MARK: - Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "viewDetailofProject" && viewModel?.canPerformSegue() == true {
+            return true
+        }
+        return false
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetailofProject" {
             if let viewController = segue.destination as? DetailViewController {
                 let selectedRow = tableView.indexPathForSelectedRow!.row
-                viewController.project = viewModel?.viewModel(at: selectedRow)
+                guard let projectModel = viewModel?.viewModel(at: selectedRow).cellValue as? Project else { return }
+                viewController.project = projectModel
             }
         }
     }
