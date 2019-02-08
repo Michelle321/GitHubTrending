@@ -25,17 +25,22 @@ class GTMainViewModelTests: XCTestCase {
     func testSuccessFetchProjectResult(){
 
         var viewModel: GTMainViewModel?
-
+        var updateTime = 0
         let exp = expectation(description: "fetch 25 projects response")
-        let complicationBlock: (Bool, Error?) -> Void = { (success, error) in
+        let complicationBlock: () -> Void = {
             guard let vm = viewModel else {
                 XCTFail("Can not initialize viewModel")
                 return
             }
-            XCTAssertTrue(success)
-            XCTAssertEqual(vm.viewModelsCount, 25)
-            XCTAssertEqual(vm.viewModel(at: 0)?.name, "LegibleError")
-            exp.fulfill()
+            if updateTime == 0 {
+                XCTAssertEqual(vm.viewModelsCount, 1)
+                XCTAssertEqual(vm.viewModel(at: 1).cellType, CellType.loading)
+                updateTime += 1
+            }else {
+                XCTAssertEqual(vm.viewModelsCount, 25)
+                XCTAssertEqual(vm.viewModel(at: 0).cellType, CellType.projects)
+                exp.fulfill()
+            }
         }
 
         viewModel = GTMainViewModel(with: complicationBlock)
@@ -51,16 +56,22 @@ class GTMainViewModelTests: XCTestCase {
     func testShouldNotProcessProjectResult(){
 
         var viewModel: GTMainViewModel?
-
+        var updateTime = 0
         let exp = expectation(description: "fetch 25 projects response but no process viewModel")
-        let complicationBlock: (Bool, Error?) -> Void = { (success, error) in
+        let complicationBlock: () -> Void = {
             guard let vm = viewModel else {
                 XCTFail("Can not initialize viewModel")
                 return
             }
-            XCTAssertFalse(success)
-            XCTAssertEqual(vm.viewModelsCount, 0)
-            exp.fulfill()
+            if updateTime == 0 {
+                XCTAssertEqual(vm.viewModelsCount, 1)
+                XCTAssertEqual(vm.viewModel(at: 1).cellType, CellType.loading)
+                updateTime += 1
+            }else {
+                XCTAssertEqual(vm.viewModelsCount, 1)
+                XCTAssertEqual(vm.viewModel(at: 0).cellType, CellType.error)
+                exp.fulfill()
+            }
         }
 
         viewModel = GTMainViewModel(with: complicationBlock)
